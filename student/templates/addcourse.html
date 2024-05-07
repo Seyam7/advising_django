@@ -1,0 +1,71 @@
+
+{% extends "student_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Student
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+    {% block css %}
+    <link href="{% static 'css/.css' %}" rel="stylesheet">
+    {% endblock css %}
+</head>  
+
+<body>  
+    {% block body %}
+    <div class="container">
+      <div class='noti'>
+        {% if noti == 1 %}
+          <div class="alert alert-danger" role="alert">
+            Course already given.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+          </div>
+        {% elif noti == 2 %}
+          <div class="alert alert-success" role="alert">
+            Course added successful.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+          </div>
+        {% else %}
+        
+        {% endif %}
+    </div>
+      <div class="head1">
+      </div>
+
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Code</th>
+            <th scope="col">Credit</th>
+            <th scope="col">Enroll</th>
+          </tr>
+        </thead>
+        {% for co in course_list %}
+        <tbody>
+          <tr>
+            <td>{{co.courseName }}</td>
+            <td>{{co.courseCode }}</td>
+            <td>{{co.credit }}</td>
+            <td><a href="{% url 'addc' x=co.courseCode %}" ><button type="button" class="btn btn-info">Add</button></a></td>
+          </tr>
+        </tbody>
+        {% endfor %}
+
+
+
+      </table>
+
+    </div>
+      {% endblock body %}
+</body>  
+
+</html> 
