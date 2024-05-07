@@ -1,0 +1,114 @@
+
+{% extends "user_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Home
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+{% block body %}
+<body>  
+    <div class="container">
+        <div class='noti'>
+            {% if noti == 1 %}
+              <div class="alert alert-danger" role="alert">
+                Password and confirm password not same.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </div>
+            {% elif noti == 2 %}
+              <div class="alert alert-danger" role="alert">
+                This email already used.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </div>
+            
+            {% endif %}
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+            One of three columns
+          </div>
+          <div class="col-sm">
+
+            <div class="part3">
+                <form method="POST">
+
+                  {% csrf_token %}
+
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="name" class="form-control" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="name" class="form-control" name="lastName" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Gender</label>
+                    <select name="gender"  id="">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                    </select>
+                  </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" name="p_email" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">phone</label>
+                        <input type="number" class="form-control" name="phone" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input type="password" class="form-control" name="con_Pass" id="exampleInputPassword1" placeholder="Confirm Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                  </form>
+
+                  <p> If you already have account please <a href="{% url 'login' %}">sign in<a>. </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+</body>  
+{% endblock body %}
+</html> 
